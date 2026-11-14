@@ -1,0 +1,30 @@
+{% set english = page.meta.lang == 'en' %}
+{% set prefix = 'en/' if english else '' %}
+<!doctype html>
+<html lang="{{ 'en' if english else 'zh-CN' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title }} · {{ 'Lab wiki' if english else '课题组 Wiki' }}</title>
+  <link rel="icon" href="{{ 'assets/logo.svg' | url }}" type="image/svg+xml">
+  <link rel="stylesheet" href="{{ 'assets/stylesheets/inventory.css' | url }}">
+</head>
+<body class="wiki-page">
+  <a class="skip-link" href="#main-content">{{ 'Skip to content' if english else '跳到内容' }}</a>
+  <aside class="wiki-sidebar" id="app-sidebar" aria-label="{{ 'Contents' if english else '目录' }}">
+    <a class="wiki-name" href="{{ '.' | url }}{{ '?lang=en' if english else '' }}">{{ 'Inventory' if english else '库存目录' }}</a>
+    <nav>
+      <a class="nav-link" href="{{ '.' | url }}{{ '?lang=en' if english else '' }}">{{ 'All components' if english else '全部元件' }}</a>
+      <p class="nav-heading">{{ 'Documentation' if english else '文档' }}</p>
+      {% for path, label_zh, label_en in [('guide/', '使用指南', 'User guide'), ('data-guide/', '字段说明', 'Data guide'), ('about/', '关于', 'About')] %}
+      <a class="nav-link" href="{{ (prefix ~ path) | url }}" {% if page.url == prefix ~ path %}aria-current="page"{% endif %}>{{ label_en if english else label_zh }}</a>
+      {% endfor %}
+    </nav>
+  </aside>
+  <div class="wiki-main">
+    <header class="wiki-topbar"><button id="mobile-menu" class="mobile-menu" type="button" aria-expanded="false" aria-controls="app-sidebar">{{ 'Contents' if english else '目录' }}</button><label class="language-control"><select id="document-language-select" aria-label="{{ 'Language' if english else '语言' }}" data-zh="{{ page.meta.translation | url if english else page.url | url }}" data-en="{{ page.url | url if english else page.meta.translation | url }}"><option value="zh" {{ 'selected' if not english else '' }}>中文</option><option value="en" {{ 'selected' if english else '' }}>English</option></select></label></header>
+    <main id="main-content" class="wiki-article">{{ page.content }}</main>
+  </div>
+  <script src="{{ 'assets/javascripts/wiki.js' | url }}" defer></script>
+</body>
+</html>
