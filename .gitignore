@@ -1,0 +1,10 @@
+.venv/
+site/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+docs/assets/data/inventory.json
+*.log
+.preview.pid
+artifacts/
+
