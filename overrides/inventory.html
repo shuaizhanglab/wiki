@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>光学元件 · 课题组 Wiki</title>
+  <link rel="icon" href="{{ 'assets/logo.svg' | url }}" type="image/svg+xml">
+  <link rel="stylesheet" href="{{ 'assets/stylesheets/inventory.css' | url }}">
+</head>
+<body class="wiki-page inventory-page">
+  <a class="skip-link" href="#main-content" data-i18n="skipContent">跳到内容</a>
+  <aside class="wiki-sidebar" id="app-sidebar" aria-label="目录" data-i18n-aria-label="mobileMenu">
+    <a class="wiki-name" href="{{ '.' | url }}" data-href-zh="{{ '.' | url }}" data-href-en="{{ '.' | url }}?lang=en" data-i18n="appName">库存目录</a>
+    <nav>
+      <button class="nav-link" type="button" data-category="" aria-current="page" data-i18n="allItems">全部元件</button>
+      <p class="nav-heading" data-i18n="categories">分类</p>
+      <div id="sidebar-categories">
+        <button class="nav-link" type="button" data-category="Beam splitter" data-i18n="categoryBeamSplitter">分束镜</button>
+        <button class="nav-link" type="button" data-category="Filter" data-i18n="categoryFilter">滤光片</button>
+        <button class="nav-link" type="button" data-category="Mirror" data-i18n="categoryMirror">反射镜</button>
+        <button class="nav-link" type="button" data-category="Lens" data-i18n="categoryLens">透镜</button>
+        <button class="nav-link" type="button" data-category="Waveplate" data-i18n="categoryWaveplate">波片</button>
+        <button class="nav-link" type="button" data-category="Polarizer" data-i18n="categoryPolarizer">偏振片</button>
+      </div>
+      <p class="nav-heading" data-i18n="documents">文档</p>
+      <a class="nav-link" href="{{ 'guide/' | url }}" data-href-zh="{{ 'guide/' | url }}" data-href-en="{{ 'en/guide/' | url }}" data-i18n="guide">使用指南</a>
+      <a class="nav-link" href="{{ 'data-guide/' | url }}" data-href-zh="{{ 'data-guide/' | url }}" data-href-en="{{ 'en/data-guide/' | url }}" data-i18n="schema">字段说明</a>
+      <a class="nav-link" href="{{ 'about/' | url }}" data-href-zh="{{ 'about/' | url }}" data-href-en="{{ 'en/about/' | url }}" data-i18n="about">关于</a>
+    </nav>
+  </aside>
+  <div class="wiki-main">
+    <header class="wiki-topbar">
+      <button id="mobile-menu" class="mobile-menu" type="button" aria-controls="app-sidebar" aria-expanded="false" data-i18n="mobileMenu">目录</button>
+      <label class="language-control"><span class="sr-only" data-i18n="language">语言</span><select id="language-select" data-i18n-aria-label="language"><option value="zh">中文</option><option value="en">English</option></select></label>
+    </header>
+    <main id="main-content">
+      <div class="title-row"><h1 data-i18n="inventoryTitle">光学元件</h1><a id="inventory-download" class="text-link" href="{{ 'assets/data/inventory.csv' | url }}" download data-i18n="downloadCsv">下载 CSV</a></div>
+      <div id="inventory-app" data-source="{{ 'assets/data/inventory.json' | url }}">
+        <div class="inventory-summary">
+          <span><span data-i18n="modelCount">型号</span> <strong id="stat-models">—</strong></span>
+          <span><span data-i18n="totalCount">总量</span> <strong id="stat-total">—</strong></span>
+          <span><span data-i18n="availableCount">可用</span> <strong id="stat-available">—</strong></span>
+          <span><span data-i18n="locationCount">位置</span> <strong id="stat-locations">—</strong></span>
+          <span><span data-i18n="lastUpdated">最近核对</span> <time id="last-updated">—</time></span>
+          <span id="demo-label" class="demo-label" hidden data-i18n="demo">示例数据</span>
+        </div>
+        <section class="catalog" aria-label="元件目录" data-i18n-aria-label="allItems">
+          <div class="search-row"><label for="inventory-search" data-i18n="searchLabel">搜索</label><input id="inventory-search" type="search" data-i18n-placeholder="searchPlaceholder" placeholder="名称、型号、参数、位置" autocomplete="off"></div>
+          <div class="filters-row">
+            <label><span data-i18n="typeLabel">类型</span><select id="filter-category"><option value="">全部类型</option></select></label>
+            <label><span data-i18n="wavelengthLabel">波长 (nm)</span><input id="filter-wavelength" type="number" min="0" step="any" inputmode="decimal"></label>
+            <label><span data-i18n="transmissionLabel">最低透过率 (%)</span><input id="filter-transmission" type="number" min="0" max="100" step="any" inputmode="decimal"></label>
+            <label><span data-i18n="locationLabel">位置</span><select id="filter-location"><option value="">全部位置</option></select></label>
+            <label class="checkbox-label"><input id="filter-availability" type="checkbox"><span data-i18n="availableOnly">仅看可用</span></label>
+            <button id="filter-reset" type="button" class="plain-button" data-i18n="reset">重置</button>
+          </div>
+          <div id="filter-chips" class="filter-chips" aria-label="筛选条件" data-i18n-aria-label="filters"></div>
+          <div class="table-toolbar"><span id="result-count" role="status" aria-live="polite" data-i18n="loading">加载中</span><div><label><span data-i18n="sortLabel">排序</span><select id="inventory-sort"><option value="name" data-i18n="sortName">名称</option><option value="category" data-i18n="sortCategory">类型</option><option value="available-desc" data-i18n="sortAvailable">可用数量</option></select></label><button id="inventory-export" class="plain-button" type="button" disabled data-i18n="exportCsv">导出结果</button></div></div>
+          <p class="mobile-table-hint" data-i18n="horizontalScroll">左右滑动查看表格</p>
+          <div id="inventory-loading" class="feedback-state" role="status" data-i18n="loading">加载中</div>
+          <div id="inventory-error" class="feedback-state" role="alert" hidden><p data-error-message data-i18n="errorTitle">加载失败</p><button type="button" class="plain-button" onclick="location.reload()" data-i18n="retry">重试</button></div>
+          <div class="table-scroll" role="region" aria-label="元件查询结果" data-i18n-aria-label="tableCaption" tabindex="0">
+            <table class="inventory-table"><caption class="sr-only" data-i18n="tableCaption">光学元件库存</caption><thead><tr><th scope="col" data-i18n="columnItem">元件</th><th scope="col" data-i18n="columnType">类型</th><th scope="col" data-i18n="columnSpecs">参数</th><th scope="col" data-i18n="columnStock">可用 / 总量</th><th scope="col" data-i18n="columnLocation">位置</th><th scope="col" data-i18n="columnStatus">状态</th><th scope="col"><span class="sr-only" data-i18n="columnActions">操作</span></th></tr></thead><tbody id="inventory-body"></tbody></table>
+          </div>
+          <div id="inventory-empty" class="feedback-state" hidden><p data-i18n="emptyTitle">无匹配元件</p><button id="empty-reset" class="plain-button" type="button" data-i18n="reset">重置</button></div>
+          <nav id="inventory-pagination" class="pagination" aria-label="分页" data-i18n-aria-label="pagination"><span id="page-info">—</span><div><button id="page-prev" class="plain-button" type="button" disabled data-i18n="previous">上一页</button><button id="page-next" class="plain-button" type="button" disabled data-i18n="next">下一页</button></div></nav>
+        </section>
+      </div>
+      <noscript><p>查询需要 JavaScript / JavaScript is required. <a href="{{ 'assets/data/inventory.csv' | url }}">CSV</a></p></noscript>
+    </main>
+  </div>
+  <dialog id="inventory-dialog" class="detail-dialog" aria-labelledby="detail-title" aria-describedby="detail-subtitle"><div class="detail-header"><div><h2 id="detail-title"></h2><p id="detail-subtitle"></p></div><button id="detail-close" class="plain-button" type="button" data-i18n="close">关闭</button></div><div id="detail-body"></div></dialog>
+  <script type="module" src="{{ 'assets/javascripts/inventory.js' | url }}"></script>
+  <script src="{{ 'assets/javascripts/wiki.js' | url }}" defer></script>
+</body>
+</html>
