@@ -2,11 +2,11 @@
 
 MkDocs + CSV 管理的光学元件目录，支持中文 / English、参数筛选、库存查询和 CSV 导出，可本地运行或发布到 GitHub Pages。附带虚构示例数据。
 
-网站：[ticeflow.github.io/lab-wiki](https://ticeflow.github.io/lab-wiki/)
+迁移到另一台电脑，请先阅读[本地部署说明](DEPLOY.md)。
 
 ## 启动
 
-安装依赖后，Windows 可双击 `start.cmd`，打开 `http://127.0.0.1:8000/`。按 Ctrl+C 停止服务。
+Windows 首次部署先运行 `install.cmd`，再双击 `start.cmd`。启动后会打开 `http://127.0.0.1:8000/`；按 Ctrl+C 停止服务。
 
 新环境需要 Python 3.10+：
 
