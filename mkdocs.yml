@@ -1,0 +1,29 @@
+site_name: 光学元件库
+site_description: 课题组光学元件目录、参数与库存查询
+site_url: !ENV [SITE_URL, 'http://127.0.0.1:8000/']
+docs_dir: docs
+site_dir: site
+use_directory_urls: true
+theme:
+  name: readthedocs
+  custom_dir: overrides
+nav:
+  - 元件目录: index.md
+  - 查找与取用: guide.md
+  - CSV 维护指南: data-guide.md
+  - 关于: about.md
+  - English:
+      - User guide: en/guide.md
+      - Data guide: en/data-guide.md
+      - About: en/about.md
+hooks:
+  - hooks/inventory.py
+plugins: []
+extra_css:
+  - assets/stylesheets/inventory.css
+markdown_extensions:
+  - admonition
+  - attr_list
+  - tables
+  - fenced_code
+
