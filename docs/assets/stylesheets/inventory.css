@@ -1,0 +1,132 @@
+:root { --ink: #202122; --muted: #65686b; --line: #c8ccd1; --light: #eaecf0; --link: #36c; --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif; }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body.wiki-page { margin: 0; background: #fff; color: var(--ink); font: 14px/1.6 var(--font); }
+.wiki-page a { color: var(--link); text-decoration: none; }
+.wiki-page a:hover { text-decoration: underline; }
+.wiki-page button, .wiki-page input, .wiki-page select { font: inherit; color: inherit; }
+.wiki-page button, .wiki-page a { touch-action: manipulation; }
+.wiki-page button { cursor: pointer; }
+.wiki-page button:disabled { opacity: .4; cursor: default; }
+.wiki-page :focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+.skip-link { position: fixed; top: -100px; left: 16px; background: white; padding: 6px 10px; border: 1px solid var(--line); z-index: 100; }
+.skip-link:focus { top: 8px; }
+.wiki-sidebar { position: fixed; width: 196px; top: 0; left: 0; bottom: 0; padding: 30px 20px; border-right: 1px solid var(--light); background: #f8f9fa; overflow-y: auto; }
+.wiki-name { display: block; font-size: 17px; font-weight: 600; color: var(--ink) !important; margin-bottom: 28px; }
+.nav-heading { margin: 24px 0 7px; padding: 0 8px; color: var(--muted); font-size: 12px; }
+.nav-link { display: block; width: 100%; padding: 6px 8px; margin: 1px 0; background: none; border: 0; border-left: 2px solid transparent; text-align: left; font-size: 13px; color: var(--link) !important; line-height: 1.5; }
+.nav-link:hover { background: #eaecf0; text-decoration: none !important; }
+.nav-link[aria-current="page"], .nav-link.is-active { background: #eaecf0; border-left-color: #72777d; color: var(--ink) !important; font-weight: 600; }
+.wiki-main { margin-left: 196px; padding: 0 38px 35px; max-width: 1800px; }
+.wiki-topbar { height: 59px; display: flex; align-items: center; justify-content: flex-end; border-bottom: 1px solid var(--light); }
+.language-control select { border: 1px solid var(--line); border-radius: 2px; background: #fff; font-size: 12px; padding: 4px 22px 4px 8px; min-height: 30px; }
+.mobile-menu { display: none; }
+.title-row { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin: 26px 0 0; border-bottom: 1px solid #a2a9b1; }
+.title-row h1 { font-size: 28px; line-height: 1.4; font-weight: 500; margin: 0 0 9px; }
+.text-link { font-size: 12px; white-space: nowrap; }
+.inventory-summary { display: flex; flex-wrap: wrap; gap: 5px 20px; color: var(--muted); font-size: 12px; padding: 12px 0 22px; }
+.inventory-summary strong { color: var(--ink); font-weight: 500; margin-left: 3px; font-variant-numeric: tabular-nums; }
+.demo-label { color: #72777d; font-style: italic; }
+.search-row { display: flex; align-items: center; gap: 12px; max-width: 650px; }
+.search-row > label { font-size: 13px; flex: 0 0 auto; }
+.search-row input { width: 100%; height: 35px; border: 1px solid #a2a9b1; border-radius: 2px; background: #fff; padding: 6px 9px; }
+.search-row input::placeholder { color: #72777d; font-size: 12px; }
+.filters-row { display: grid; grid-template-columns: minmax(135px,1.05fr) minmax(100px,.75fr) minmax(130px,.85fr) minmax(175px,1.4fr) auto auto; align-items: end; gap: 14px; margin-top: 15px; }
+.filters-row > label { min-width: 0; font-size: 12px; }
+.filters-row > label > span { display: block; margin-bottom: 5px; }
+.filters-row input[type="number"], .filters-row select { display: block; width: 100%; height: 32px; padding: 4px 7px; border: 1px solid #a2a9b1; border-radius: 2px; background: white; font-size: 12px; min-width: 0; }
+.filters-row > .checkbox-label { display: flex; align-items: center; gap: 6px; white-space: nowrap; min-height: 32px; }
+.filters-row > .checkbox-label > span { margin: 0; }
+.checkbox-label input { width: 14px; height: 14px; margin: 0; accent-color: #54595d; }
+.plain-button { border: 1px solid #a2a9b1; border-radius: 2px; padding: 5px 11px; background: #f8f9fa; line-height: 1.6; font-size: 12px !important; white-space: nowrap; }
+.plain-button:hover:not(:disabled) { background: #eaecf0; }
+.filters-row > .plain-button { min-height: 32px; }
+.filter-chips { display: flex; flex-wrap: wrap; gap: 7px; }
+.filter-chips:not(:empty) { margin-top: 13px; }
+.filter-chip { background: #f8f9fa; color: #54595d !important; border: 1px solid var(--line); padding: 2px 7px; border-radius: 2px; font-size: 12px !important; }
+.table-toolbar { margin-top: 23px; padding: 0 0 9px; display: flex; align-items: center; justify-content: space-between; gap: 15px; font-size: 12px; color: var(--muted); }
+.table-toolbar > div, .table-toolbar label { display: flex; align-items: center; gap: 9px; }
+.table-toolbar select { max-width: 170px; border: 0; background: white; padding: 4px; font-size: 12px; }
+.table-scroll { position: relative; width: 100%; overflow-x: auto; border-top: 1px solid #a2a9b1; border-bottom: 1px solid #a2a9b1; }
+.inventory-table { width: 100%; border-collapse: collapse; font-size: 13px; text-align: left; }
+.inventory-table th { padding: 10px 12px; background: #f8f9fa; border-bottom: 1px solid var(--line); color: #404244; font-size: 12px; font-weight: 600; white-space: nowrap; }
+.inventory-table td { border-bottom: 1px solid var(--light); padding: 11px 12px; vertical-align: top; }
+.inventory-table tr:last-child td { border-bottom: 0; }
+.inventory-table tbody tr:hover { background: #fafafa; }
+.inventory-table td:first-child { min-width: 210px; }
+.inventory-table td:nth-child(2) { min-width: 95px; }
+.inventory-table td:nth-child(3) { min-width: 185px; max-width: 285px; }
+.inventory-table td:nth-child(4) { min-width: 92px; white-space: nowrap; }
+.inventory-table td:nth-child(5) { min-width: 155px; max-width: 210px; }
+.inventory-table td:nth-child(6) { white-space: nowrap; }
+.inventory-table td:last-child { text-align: right; }
+.optic-icon { display: none; }
+.item-name { display: block; font-weight: 500; }
+.item-model, .cell-secondary { display: block; color: var(--muted); font-size: 11px; margin-top: 3px; }
+.spec-primary, .location-primary { display: block; }
+.category-label { font-size: 12px; }
+.stock-available, .stock-zero { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+.stock-denominator { color: var(--muted); }
+.status-badge { color: #54595d; font-size: 12px; }
+.status-badge--unavailable { color: #72777d; }
+.detail-button { background: none; color: var(--link) !important; border: 0; padding: 0; font-size: 12px !important; white-space: nowrap; }
+.detail-button:hover { text-decoration: underline; }
+.pagination { display: flex; align-items: center; justify-content: space-between; gap: 15px; padding: 12px 0; color: var(--muted); font-size: 12px; }
+.pagination > div { display: flex; gap: 7px; }
+.feedback-state { text-align: center; padding: 24px 12px; color: var(--muted); font-size: 13px; }
+.feedback-state p { margin: 0 0 10px; }
+.data-note { margin: 15px 0 0; font-size: 12px; color: var(--muted); }
+.mobile-table-hint { display: none; }
+.detail-dialog { width: min(680px,calc(100vw - 32px)); max-height: calc(100vh - 48px); padding: 0; border: 1px solid #72777d; border-radius: 2px; color: var(--ink); background: white; overflow: auto; }
+.detail-dialog::backdrop { background: #0006; }
+.detail-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 15px; padding: 20px 24px 13px; border-bottom: 1px solid var(--line); }
+.detail-header h2 { margin: 0; font-size: 20px; font-weight: 500; }
+#detail-subtitle { margin: 5px 0 0; color: var(--muted); font-size: 12px; }
+#detail-body { padding: 8px 24px 20px; font-size: 13px; }
+#detail-body h3 { font-size: 14px; font-weight: 600; margin: 20px 0 8px; }
+#detail-body dl { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); column-gap: 22px; margin: 0; }
+#detail-body .detail-pair { display: grid; grid-template-columns: minmax(95px,.9fr) minmax(0,1.1fr); font-size: 12px; }
+#detail-body dt, #detail-body dd { margin: 0; padding: 8px 0; border-bottom: 1px solid var(--light); overflow-wrap: anywhere; }
+#detail-body dt { color: var(--muted); padding-right: 10px; }
+.detail-hint, .demo-detail-notice { color: var(--muted); font-size: 12px; }
+.wiki-article { max-width: 960px; padding-top: 25px; font-size: 14px; line-height: 1.8; }
+.wiki-article h1 { margin: 0 0 20px; border-bottom: 1px solid #a2a9b1; font-size: 28px; font-weight: 500; line-height: 1.5; }
+.wiki-article h2 { margin-top: 28px; border-bottom: 1px solid var(--line); font-size: 21px; font-weight: 500; }
+.wiki-article h3 { margin-top: 20px; font-size: 16px; }
+.wiki-article pre { padding: 12px 15px; background: #f8f9fa; border: 1px solid var(--line); overflow-x: auto; font-size: 12px; }
+.wiki-article code { font-family: Consolas, monospace; font-size: .9em; }
+.wiki-article :not(pre) > code { padding: 1px 4px; background: #f1f2f3; }
+.wiki-article table { border-collapse: collapse; font-size: 13px; width: 100%; }
+.wiki-article th, .wiki-article td { padding: 7px 10px; border: 1px solid var(--line); text-align: left; }
+.wiki-article th { background: #f8f9fa; }
+.wiki-article ul, .wiki-article ol { padding-left: 24px; }
+@media (max-width: 1200px) { .wiki-main { padding-right: 25px; padding-left: 25px; } .filters-row { grid-template-columns: repeat(4,minmax(0,1fr)); } .filters-row > .checkbox-label { grid-column: 3; justify-content: flex-end; } }
+@media (max-width: 800px) { .wiki-sidebar { width: 168px; padding: 25px 13px; } .wiki-main { margin-left: 168px; padding-right: 20px; padding-left: 20px; } .filters-row { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; } .filters-row > .checkbox-label { grid-column: 1; justify-content: flex-start; } .inventory-summary { gap: 6px 14px; } }
+@media (max-width: 600px) {
+  .wiki-main { margin-left: 0; padding: 0 16px 24px; }
+  .wiki-sidebar { width: 215px; top: 49px; padding-top: 18px; z-index: 20; border-right: 1px solid #a2a9b1; transform: translateX(-100%); visibility: hidden; }
+  .wiki-sidebar.is-open { transform: none; visibility: visible; }
+  .wiki-name { margin-bottom: 17px; }
+  .wiki-topbar { height: 49px; justify-content: space-between; position: sticky; top: 0; z-index: 25; background: white; }
+  .mobile-menu { display: block; background: none; border: 0; padding: 4px 0; color: var(--link) !important; font-size: 13px !important; }
+  .title-row { margin-top: 21px; }
+  .title-row h1, .wiki-article h1 { font-size: 25px; }
+  .inventory-summary { padding-bottom: 19px; font-size: 11px; }
+  .search-row { gap: 9px; }
+  .filters-row { gap: 11px; }
+  .filters-row > label { font-size: 11px; }
+  .filters-row select, .filters-row input[type="number"] { font-size: 12px; }
+  .table-toolbar { align-items: flex-start; font-size: 11px; }
+  .table-toolbar > div { align-items: flex-end; gap: 7px; }
+  .table-toolbar label { display: block; }
+  .table-toolbar select { max-width: 115px; padding-left: 0; }
+  .table-toolbar > div > label > span { display: none; }
+  .mobile-table-hint { display: block; color: var(--muted); font-size: 11px; margin: 0 0 7px; }
+  .inventory-table td, .inventory-table th { padding: 9px 10px; }
+  .detail-header { padding: 17px 18px 11px; }
+  #detail-body { padding: 5px 18px 18px; }
+  #detail-body dl { grid-template-columns: 1fr; }
+  .wiki-article { overflow-x: auto; font-size: 13px; }
+  .wiki-article table { font-size: 12px; }
+}
